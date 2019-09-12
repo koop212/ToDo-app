@@ -16,9 +16,10 @@ router.get('/', (req, res) => {
 
 // Post tasks in todo table
 router.post('/', (req, res) => {
-    let queryText = `INSERT INTO "todo" ("tasks", "due_date")
-                    VALUES ($1, $2);`;
-    pool.query(queryText, [req.body.tasks, req.body.due_date])
+    console.log('show task in route', req.body);
+    let queryText = `INSERT INTO "todo" ("tasks")
+                    VALUES ($1);`;
+    pool.query(queryText, [req.body.tasks])
     .then(() => {
         res.sendStatus(200);
     }).catch(error => {

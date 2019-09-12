@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableHead, TableCell, TableRow } from '@material-ui/core';
+import { Table, TableBody, TableHead, TableCell, TableRow, Button } from '@material-ui/core';
 import Moment from 'react-moment';
 
 
@@ -15,6 +15,10 @@ class TasksTable extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_TASKS'});
     }
+
+    // deleteTask = (taskId) => {
+    //     this.props.dispatch({ type: 'DELETE_TASK', payload: { id: taskId}});
+    // }
     
     render() {
         return(
@@ -23,7 +27,6 @@ class TasksTable extends Component {
                     <TableHead>
                         <TableRow>
                             <TableCell>Tasks</TableCell>
-                            <TableCell>Due Date</TableCell>
                             <TableCell>Edit/Delete</TableCell>
                         </TableRow>
                     </TableHead>
@@ -31,7 +34,7 @@ class TasksTable extends Component {
                         {this.props.reduxState.tasksReducer.map((tasks, i) => {
                             return <TableRow key={i}>
                                         <TableCell>{tasks.tasks}</TableCell>
-                                        <TableCell><Moment format='MM/DD/YY'>{tasks.due_date}</Moment></TableCell>
+                                        {/* <TableCell><Button onClick={() => this.deleteTask(tasks.id)}>Delete</Button></TableCell> */}
                                    </TableRow>
                         })}
                     </TableBody>
